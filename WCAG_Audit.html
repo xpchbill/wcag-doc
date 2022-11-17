@@ -307,7 +307,6 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
-      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -418,8 +417,8 @@
 <tbody>
 <tr class="odd">
 <td>Phase 1</td>
-<td>7</td>
-<td>54</td>
+<td>8</td>
+<td>53</td>
 <td>61</td>
 </tr>
 <tr class="even">
@@ -443,13 +442,13 @@
 <li>Issue</li>
 </ul>
 <blockquote>
-<p>The page titles for all pages fail to adequately describe the page content stating only “Online Services”.</p>
+<p>The page titles for all pages fail to adequately describe the page content stating only <code>“Online Services”</code>.</p>
 </blockquote>
 <ul>
 <li>Recommendation</li>
 </ul>
 <blockquote>
-<p>Ensure that the page title conveys the primary topic of the page as well as the site name (e.g., “Home - Online Services | City of Ottawa”).</p>
+<p>Ensure that the page title conveys the primary topic of the page as well as the site name (e.g., <code>“Home - Online Services | City of Ottawa”</code>).</p>
 </blockquote>
 <div class="sourceCode" id="cb1" data-code-line-numbers="3,17"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// xxxRoute.js</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>pageHeaderOptions<span class="op">:</span> {</span>
@@ -483,14 +482,14 @@
 <li>Recommendation</li>
 </ul>
 <blockquote>
-<p>Provide users with the opportunity to extend the timeout duration by up to ten times the original amount.</p>
+<p>Provide users with <code>the opportunity to extend the timeout duration</code> by up to ten times the original amount.</p>
 </blockquote>
 <h3 id="solution">Solution</h3>
 <div class="columns">
 <div class="column" style="width:50%&quot;;">
-<p><img data-src="images/ANE-140296-01.png" class="margin-caption"></p>
+<p><img data-src="images/ANE-140296-01.png"></p>
 </div><div class="column" style="width:50%;">
-<p><img data-src="images/ANE-140296-02.png" class="margin-caption"></p>
+<p><img data-src="images/ANE-140296-02.png"></p>
 </div>
 </div>
 </section>
@@ -517,6 +516,171 @@
 <li>Remove unnecessary words from aria-label.</li>
 <li>Use aria-expanded + aria-own/aria-controls to describe the expand/collapse state and related origin.</li>
 <li>More details please confirm with UX about the special cases.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="common-issue---ane-131139" class="slide level2 smaller">
+<h2>Common Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-131139">ANE-131139</a></h2>
+<ul>
+<li>Issue</li>
+</ul>
+<blockquote>
+<p>All pages lack a main landmark.</p>
+</blockquote>
+<ul>
+<li>Recommendation</li>
+</ul>
+<blockquote>
+<p>Wrap the main content of the page in a <code>&lt;main&gt;</code> element …or use a <code>role="main"</code> on the main content parent container.</p>
+</blockquote>
+<div class="columns">
+<div class="column" style="width:50%&quot;;">
+<p><img data-src="images/ANE-131139.png"></p>
+</div><div class="column" style="width:50%;">
+<h3 id="solution-2">Solution</h3>
+<p>Use <code>header</code> tag as a container of the banner region, <code>&lt;main&gt;</code> tag as a container of main region and <code>&lt;footer&gt;</code> tag as a container of the content info region.</p>
+<p>You can also use aria roles for each landmark:</p>
+<ul>
+<li>Header landmark: role=“banner”,</li>
+<li>Main landmark: role=“main”,</li>
+<li>Footer landmark: role=“contentinfo”,</li>
+<li>Navigation landmark: role=“navigation”,</li>
+<li>Search: role=“search”</li>
+</ul>
+<p>Finally, ensure that <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code> should be a direct child of <code>&lt;body&gt;</code> tag. (miss <code>&lt;Nav&gt;</code>)</p>
+<p>Refer to:</p>
+<ul>
+<li><a href="https://www.w3.org/TR/wai-aria-practices/examples/landmarks/index.html" class="uri">https://www.w3.org/TR/wai-aria-practices/examples/landmarks/index.html</a></li>
+<li><a href="https://www.w3.org/WAI/tutorials/page-structure/regions/" class="uri">https://www.w3.org/WAI/tutorials/page-structure/regions/</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="common-issue---ane-137830" class="slide level2">
+<h2>Common Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-137830">ANE-137830</a></h2>
+<ul>
+<li>Issue</li>
+</ul>
+<blockquote>
+<p>Functional accessibility issue: Many SVG graphics contain a <code>role="presentation"</code> or <code>role="none"</code> attribute. Because these icons are not focusable, they present no real impact on assistive technologies but the implemented role values may flag as invalid in automated testing tools.</p>
+</blockquote>
+<ul>
+<li>Recommendation</li>
+</ul>
+<blockquote>
+<p>Use <code>aria-hidden="true"</code> in place of <code>role="presentation"</code> or <code>role="none"</code>.</p>
+</blockquote>
+<h3 id="solution-3">Solution</h3>
+<div class="columns">
+<div class="column" style="width:50%&quot;;">
+<div class="sourceCode" id="cb2" data-code-line-numbers="4,5"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">&lt;</span>Icon</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  symbolPrefix<span class="op">=</span><span class="st">"an-icon"</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  name<span class="op">=</span><span class="st">"location"</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  focusable<span class="op">=</span>{<span class="kw">false</span>}</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  aria<span class="op">-</span>hidden<span class="op">=</span>{<span class="kw">false</span>}</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  className<span class="op">=</span><span class="st">"calendar-view__select-icon"</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="op">/&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb3" data-code-line-numbers="2,4"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">&lt;</span>svg</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  aria<span class="op">-</span>hidden<span class="op">=</span>{<span class="kw">false</span>}</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  className<span class="op">=</span><span class="st">"icon-svg icon-svg-ic-problem icon-svg-size-md icon-svg-type-normal"</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  focusable<span class="op">=</span>{<span class="kw">false</span>}</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="common-issue---ane-137668" class="slide level2 smaller">
+<h2>Common Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-137668">ANE-137668</a></h2>
+<ul>
+<li>Issue</li>
+</ul>
+<blockquote>
+<p>The alternative text on the <code>“Ottawa”</code> wordmark fails to adequately describe the image content, announcing <code>“System - Banner Logo”</code> instead of <code>“City of Ottawa”</code>.</p>
+</blockquote>
+<ul>
+<li>Recommendation</li>
+</ul>
+<blockquote>
+<p>Change the alternative text to “City of Ottawa” (if <code>“City of Ottawa”</code> appeared in proximity in machine text, we’d recommend <code>“logo of City of Ottawa”</code> instead … either are satisfactory).</p>
+</blockquote>
+<h3 id="solution-4">Solution</h3>
+<ul>
+<li>Change the alternative text to reflect the image content.</li>
+</ul>
+<p><strong>Dev Notes</strong></p>
+<ul>
+<li>Currently we use the display name as the alternative text, which were configured in AUI file upload.</li>
+<li>Confirm with UX that we would add additional information to describe the image before the display name.</li>
+<li>For the banner logo image, update alternative text to <code>"Banner logo of {display name}"</code></li>
+<li>For the logo image of receipt, update alternative text to <code>"Receipt logo of {display name}"</code></li>
+</ul>
+</section>
+<section id="common-issue---ane-138581" class="slide level2 smaller">
+<h2>Common Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-138581">ANE-138581</a></h2>
+<ul>
+<li>Issue</li>
+</ul>
+<blockquote>
+<p>The page lacks an <code>&lt;h1&gt;</code> heading. Page lacks any <code>headings</code>.</p>
+</blockquote>
+<ul>
+<li>Recommendation</li>
+</ul>
+<blockquote>
+<p>Every page must have at least one, and typically only one,<code>&lt;h1&gt;</code>. Add additional headings to the page content (e.g., <code>“Book an event”</code>, <code>“Popular events”</code>).</p>
+</blockquote>
+<h3 id="solution-5">Solution</h3>
+<div class="columns">
+<div class="column" style="width:50%&quot;;">
+<p>Examples:</p>
+<p>Home</p>
+<ul>
+<li>Update module name to h2.</li>
+</ul>
+<p>Flexreg</p>
+<ul>
+<li>Update each section header to h2</li>
+<li>Update the “Block booing”, “Selected Summary” to h3</li>
+</ul>
+<p>Reservation Detail</p>
+<ul>
+<li>Update “Availability calendar” to h2</li>
+<li>Remove the heading for “Attendee” label, Description of “More Information” item.(See the attachment with red underline)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p>Note: <span style="color: red">Anchor should not be whithin the heading</span></p>
+<blockquote>
+<p>The reasoning is that screen readers will not guarantee to detect the heading level if within an anchor</p>
+</blockquote>
+</div>
+</div>
+</section>
+<section id="common-issue---ane-138601" class="slide level2 smaller">
+<h2>Common Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-138601">ANE-138601</a></h2>
+<ul>
+<li>Issue</li>
+</ul>
+<blockquote>
+<p><code>Issue #22:</code> Anchors exist with aria-labels describing the anchors as images, yet the images are background CSS images and do not need to be identified as part of the anchor text.<br> <code>Issue #27:</code> Form errors fail to be announced to screen reader users.<br><code>Issue #32:</code> The significance of asterisks is not explained.</p>
+</blockquote>
+<ul>
+<li>Recommendation</li>
+</ul>
+<blockquote>
+<p><code>Issue #22:</code> Remove the word image from each anchor’s aria-label.<br><code>Issue #27:</code> <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-138601">ANE-138601</a> <br><code>Issue #32:</code> Same with the above issue #27</p>
+</blockquote>
+<div class="columns">
+<div class="column" style="width:50%&quot;;">
+<p><img data-src="images/ANE-138601.png"></p>
+</div><div class="column" style="width:50%;">
+<h3 id="solution-6">Solution</h3>
+<blockquote>
+<p><code>Issue #22:</code> Remove the word <code>"image"</code> from aria-label of each link.<br> <code>Issue #27:</code> Add attribute aria-invalid and aria-errormessage.<br><code>Issue #32:</code> Same with the above issue #27</p>
+</blockquote>
+<p>Refer to:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-errormessage" class="uri">https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-errormessage</a></li>
 </ul>
 </div>
 </div>

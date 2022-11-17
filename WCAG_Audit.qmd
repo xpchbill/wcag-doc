@@ -8,13 +8,13 @@ format:
     theme: night
     transition: slide
     # smaller: true
-    scrollable: true
-    code-overflow: scroll
+    # scrollable: true
+    # code-overflow: scroll
     code-line-numbers: false
     slide-number: true
     # author: "Bill Xiong"
     # background-transition: fade
-fig-cap-location: margin
+# fig-cap-location: margin
 fontsize: 16pt
 filters:
   - roughnotation
@@ -24,7 +24,7 @@ filters:
 
 | Steps | Common Issues | Page issues | Total issues |
 |--------|--------|--------|--------|
-| Phase 1  | 7 | 54 | 61 |
+| Phase 1  | 8 | 53 | 61 |
 | Phase 2  | 2 | 27 | 29 |
 | Phase 3  |      | | |
 
@@ -33,11 +33,11 @@ filters:
 ## Common Issue - [ANE-137868](https://jirafnd.dev.activenetwork.com/browse/ANE-137868)
 - Issue
 
-> The page titles for all pages fail to adequately describe the page content stating only “Online Services”.
+> The page titles for all pages fail to adequately describe the page content stating only `“Online Services”`.
 
 - Recommendation
 
-> Ensure that the page title conveys the primary topic of the page as well as the site name (e.g., “Home - Online Services | City of Ottawa”).
+> Ensure that the page title conveys the primary topic of the page as well as the site name (e.g., `“Home - Online Services | City of Ottawa”`).
 
 
 ```{.js code-line-numbers="3,17"}
@@ -61,6 +61,7 @@ syncDocumentTitle = () => {
   }
 }
 ```
+
 ## Common Issue - [ANE-140296](https://jirafnd.dev.activenetwork.com/browse/ANE-140296) {.smaller}
 - Issue
 
@@ -68,7 +69,7 @@ syncDocumentTitle = () => {
 
 - Recommendation
 
-> Provide users with the opportunity to extend the timeout duration by up to ten times the original amount.
+> Provide users with `the opportunity to extend the timeout duration` by up to ten times the original amount.
 
 ### Solution
 :::: {.columns}
@@ -102,5 +103,161 @@ syncDocumentTitle = () => {
 - Remove unnecessary words from aria-label.
 - Use aria-expanded + aria-own/aria-controls to describe the expand/collapse state and related origin.
 - More details please confirm with UX about the special cases.
+:::
+::::
+
+## Common Issue - [ANE-131139](https://jirafnd.dev.activenetwork.com/browse/ANE-131139) {.smaller}
+- Issue
+
+> All pages lack a main landmark.
+
+- Recommendation
+
+> Wrap the main content of the page in a `<main>` element …or use a `role="main"` on the main content parent container.
+
+
+:::: {.columns}
+::: {.column width=50%"}
+![](images/ANE-131139.png)
+:::
+::: {.column width="50%"}
+### Solution
+
+Use `header` tag as a container of the banner region, `<main>` tag as a container of main region and `<footer>` tag as a container of the content info region.
+
+You can also use aria roles for each landmark:
+
+- Header landmark: role=“banner”,
+- Main landmark: role=“main”,
+- Footer landmark: role=“contentinfo”,
+- Navigation landmark: role=“navigation”,
+- Search: role=“search”
+
+Finally, ensure that `<header>`, `<main>`, `<footer>` should be a direct child of `<body>` tag. (miss `<Nav>`)
+
+Refer to:
+
+- <https://www.w3.org/TR/wai-aria-practices/examples/landmarks/index.html>
+- <https://www.w3.org/WAI/tutorials/page-structure/regions/>
+:::
+::::
+
+
+
+## Common Issue - [ANE-137830](https://jirafnd.dev.activenetwork.com/browse/ANE-137830)
+- Issue
+
+> Functional accessibility issue: Many SVG graphics contain a `role="presentation"` or `role="none"` attribute. Because these icons are not focusable, they present no real impact on assistive technologies but the implemented role values may flag as invalid in automated testing tools.
+
+- Recommendation
+
+> Use `aria-hidden="true"` in place of `role="presentation"` or `role="none"`.
+
+### Solution
+:::: {.columns}
+::: {.column width=50%"}
+```{.js code-line-numbers="4,5"}
+<Icon
+  symbolPrefix="an-icon"
+  name="location"
+  focusable={false}
+  aria-hidden={false}
+  className="calendar-view__select-icon"
+/>
+```
+:::
+::: {.column width="50%"}
+```{.js code-line-numbers="2,4"}
+<svg
+  aria-hidden={false}
+  className="icon-svg icon-svg-ic-problem icon-svg-size-md icon-svg-type-normal"
+  focusable={false}
+>
+```
+:::
+::::
+
+
+
+## Common Issue - [ANE-137668](https://jirafnd.dev.activenetwork.com/browse/ANE-137668) {.smaller}
+- Issue
+
+> The alternative text on the `“Ottawa”` wordmark fails to adequately describe the image content, announcing `“System - Banner Logo”` instead of `“City of Ottawa”`.
+
+- Recommendation
+
+> Change the alternative text to “City of Ottawa” (if `“City of Ottawa”` appeared in proximity in machine text, we’d recommend `“logo of City of Ottawa”` instead … either are satisfactory).
+
+### Solution
+- Change the alternative text to reflect the image content.
+
+**Dev Notes**
+
+- Currently we use the display name as the alternative text, which were configured in AUI file upload.
+- Confirm with UX that we would add additional information to describe the image before the display name.
+- For the banner logo image, update alternative text to `"Banner logo of {display name}"`
+- For the logo image of receipt, update alternative text to `"Receipt logo of {display name}"`
+
+## Common Issue - [ANE-138581](https://jirafnd.dev.activenetwork.com/browse/ANE-138581) {.smaller}
+- Issue
+
+> The page lacks an `<h1>` heading.
+> Page lacks any `headings`.
+
+- Recommendation
+
+> Every page must have at least one, and typically only one,` <h1>`.
+> Add additional headings to the page content (e.g., `“Book an event”`, `“Popular events”`).
+
+
+### Solution
+:::: {.columns}
+::: {.column width=50%"}
+Examples:
+
+Home
+
+- Update module name to h2.
+
+Flexreg
+
+- Update each section header to h2
+- Update the "Block booing", "Selected Summary" to h3
+
+Reservation Detail
+
+- Update "Availability calendar" to h2
+- Remove the heading for “Attendee” label, Description of "More Information" item.(See the attachment with red underline)
+
+:::
+::: {.column width="50%"}
+Note: <span style="color: red">Anchor should not be whithin the heading</span>
+
+> The reasoning is that screen readers will not guarantee to detect the heading level if within an anchor
+:::
+::::
+
+
+## Common Issue - [ANE-138601](https://jirafnd.dev.activenetwork.com/browse/ANE-138601) {.smaller}
+- Issue
+
+> `Issue #22:` Anchors exist with aria-labels describing the anchors as images, yet the images are background CSS images and do not need to be identified as part of the anchor text.<br> `Issue #27:` Form errors fail to be announced to screen reader users.<br>`Issue #32:` The significance of asterisks is not explained.
+
+- Recommendation
+
+> `Issue #22:` Remove the word image from each anchor’s aria-label.<br>`Issue #27:` [ANE-138601](https://jirafnd.dev.activenetwork.com/browse/ANE-138601) <br>`Issue #32:` Same with the above issue #27
+
+
+:::: {.columns}
+::: {.column width=50%"}
+![](images/ANE-138601.png)
+:::
+::: {.column width="50%"}
+### Solution
+> `Issue #22:` Remove the word `"image"` from aria-label of each link.<br> `Issue #27:` Add attribute aria-invalid and aria-errormessage.<br>`Issue #32:` Same with the above issue #27
+
+Refer to:
+
+- <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-errormessage>
 :::
 ::::
