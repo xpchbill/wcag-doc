@@ -261,3 +261,42 @@ Refer to:
 - <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-errormessage>
 :::
 ::::
+
+
+## Common Issue - [ANE-138596](https://jirafnd.dev.activenetwork.com/browse/ANE-138596)
+- Issue
+
+> [WCAG 2.1] Many `input` fields lack proper `input identification` (as defined in WCAG 2.1 Success Criterion 1.3.5 Identify Input Purpose).
+
+- Recommendation
+
+> Implement the associated input names using the autocomplete attribute.([Input Purpose](https://www.w3.org/TR/WCAG21/#input-purposes))
+
+### Solution
+
+```{.js code-line-numbers="8,18"}
+<Input
+  className={classNames('sign-form__field', { error: errors.lastName })}
+  maxLength={40}
+  onValueChange={this.bindOnFieldChange(fields.LAST_NAME)}
+  onBlur={this.bindOnFieldValidate(fields.LAST_NAME)}
+  value={formData.get(fields.LAST_NAME)}
+  ariaLabel={this.getLabelAriaText(lastNameLabel)}
+  autoComplete="family-name"
+/>
+<Input
+  maxLength={phoneMaxlength || 20}
+  formula={/\d/}
+  disabled={disabled}
+  value={phone}
+  onInput={this.handlePhoneNumberChange}
+  onBlur={this.handlePhoneNumberBlur}
+  ariaLabel={phoneAriaLabel}
+  autoComplete="tel-national"
+/>
+```
+
+
+Refer to:
+
+- <https://html.spec.whatwg.org/multipage/forms.html#attr-form-autocomplete>
