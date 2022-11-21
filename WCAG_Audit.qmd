@@ -2,8 +2,9 @@
 title: "ANet CUI WCAG Audit"
 date: "2022-11-03"
 subtitle: "Issue fixing phase 1 ~ 3"
-format: 
+format:
   revealjs:
+    # logo: /images/logo.png
     # theme: night, sky
     theme: night
     transition: slide
@@ -12,15 +13,20 @@ format:
     # code-overflow: scroll
     code-line-numbers: false
     slide-number: true
+    title-slide-attributes:
+      data-background-image: /images/Picture1.png
+      # data-background-size: contain
+      data-background-opacity: "0.6"
     # author: "Bill Xiong"
     # background-transition: fade
 # fig-cap-location: margin
-fontsize: 16pt
+fontsize: 14pt
+# linestretch: 1.5
 filters:
   - roughnotation
 ---
 
-## Summary
+## Summary {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 
 | Steps | Common Issues | Page issues | Total issues |
 |--------|--------|--------|--------|
@@ -30,7 +36,7 @@ filters:
 
 : {tbl-colwidths="[20, 30, 23, 24]"}
 
-## Common Issue - [ANE-137868](https://jirafnd.dev.activenetwork.com/browse/ANE-137868)
+## Common Issue - [ANE-137868](https://jirafnd.dev.activenetwork.com/browse/ANE-137868) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > The page titles for all pages fail to adequately describe the page content stating only `“Online Services”`.
@@ -62,7 +68,7 @@ syncDocumentTitle = () => {
 }
 ```
 
-## Common Issue - [ANE-140296](https://jirafnd.dev.activenetwork.com/browse/ANE-140296) {.smaller}
+## Common Issue - [ANE-140296](https://jirafnd.dev.activenetwork.com/browse/ANE-140296) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > The timeouts fail to offer the extension of time required by this success criterion.
@@ -82,7 +88,7 @@ syncDocumentTitle = () => {
 ::::
 
 
-## Common Issue - [ANE-138518](https://jirafnd.dev.activenetwork.com/browse/ANE-138518) {.smaller}
+## Common Issue - [ANE-138518](https://jirafnd.dev.activenetwork.com/browse/ANE-138518) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > Throughout the application, multiple expandable regions are given aria-labels that are too verbose and obscure the description of the actual control with information that is not needed (e.g., “Section Activity selection collapse detail clickable arrow”)
@@ -106,7 +112,7 @@ syncDocumentTitle = () => {
 :::
 ::::
 
-## Common Issue - [ANE-131139](https://jirafnd.dev.activenetwork.com/browse/ANE-131139) {.smaller}
+## Common Issue - [ANE-131139](https://jirafnd.dev.activenetwork.com/browse/ANE-131139) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > All pages lack a main landmark.
@@ -144,7 +150,7 @@ Refer to:
 
 
 
-## Common Issue - [ANE-137830](https://jirafnd.dev.activenetwork.com/browse/ANE-137830)
+## Common Issue - [ANE-137830](https://jirafnd.dev.activenetwork.com/browse/ANE-137830) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > Functional accessibility issue: Many SVG graphics contain a `role="presentation"` or `role="none"` attribute. Because these icons are not focusable, they present no real impact on assistive technologies but the implemented role values may flag as invalid in automated testing tools.
@@ -179,7 +185,7 @@ Refer to:
 
 
 
-## Common Issue - [ANE-137668](https://jirafnd.dev.activenetwork.com/browse/ANE-137668) {.smaller}
+## Common Issue - [ANE-137668](https://jirafnd.dev.activenetwork.com/browse/ANE-137668) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > The alternative text on the `“Ottawa”` wordmark fails to adequately describe the image content, announcing `“System - Banner Logo”` instead of `“City of Ottawa”`.
@@ -198,7 +204,7 @@ Refer to:
 - For the banner logo image, update alternative text to `"Banner logo of {display name}"`
 - For the logo image of receipt, update alternative text to `"Receipt logo of {display name}"`
 
-## Common Issue - [ANE-138581](https://jirafnd.dev.activenetwork.com/browse/ANE-138581) {.smaller}
+## Common Issue - [ANE-138581](https://jirafnd.dev.activenetwork.com/browse/ANE-138581) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > The page lacks an `<h1>` heading.
@@ -238,7 +244,7 @@ Note: <span style="color: red">Anchor should not be whithin the heading</span>
 ::::
 
 
-## Common Issue - [ANE-138601](https://jirafnd.dev.activenetwork.com/browse/ANE-138601) {.smaller}
+## Common Issue - [ANE-138601](https://jirafnd.dev.activenetwork.com/browse/ANE-138601) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > `Issue #22:` Anchors exist with aria-labels describing the anchors as images, yet the images are background CSS images and do not need to be identified as part of the anchor text.<br> `Issue #27:` Form errors fail to be announced to screen reader users.<br>`Issue #32:` The significance of asterisks is not explained.
@@ -263,7 +269,7 @@ Refer to:
 ::::
 
 
-## Common Issue - [ANE-138596](https://jirafnd.dev.activenetwork.com/browse/ANE-138596)
+## Common Issue - [ANE-138596](https://jirafnd.dev.activenetwork.com/browse/ANE-138596) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > [WCAG 2.1] Many `input` fields lack proper `input identification` (as defined in WCAG 2.1 Success Criterion 1.3.5 Identify Input Purpose).
