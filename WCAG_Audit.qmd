@@ -20,8 +20,8 @@ format:
     # author: "Bill Xiong"
     # background-transition: fade
 # fig-cap-location: margin
-fontsize: 14pt
-# linestretch: 1.5
+fontsize: 15pt
+linestretch: 1.3
 filters:
   - roughnotation
 ---
@@ -36,6 +36,23 @@ filters:
 
 : {tbl-colwidths="[20, 30, 23, 24]"}
 
+## Page Issue - [ANE-137859](https://jirafnd.dev.activenetwork.com/browse/ANE-137859) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> The saved credit card has a `“Remove” action` that fails to identify what card will be removed. If multiple cards existed on the account, no differentiation would exist between remove actions.
+
+- Recommendation
+
+>  Include the type of card or another unique identifier of the card being removed as part of the label for the remove action.
+
+### Solution
+```{.js code-line-numbers="2,4"}
+// Before
+"app.modules.myAccount.SavedCards.remove": "Remove",
+// After
+"app.modules.myAccount.SavedCards.removeAriaLabel": "Remove {cardType} with last 4 digits {lastFourDigits}",
+```
+
 ## Common Issue - [ANE-137868](https://jirafnd.dev.activenetwork.com/browse/ANE-137868) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
@@ -45,7 +62,7 @@ filters:
 
 > Ensure that the page title conveys the primary topic of the page as well as the site name (e.g., `“Home - Online Services | City of Ottawa”`).
 
-
+### Solution
 ```{.js code-line-numbers="3,17"}
 // xxxRoute.js
 pageHeaderOptions: {
@@ -91,11 +108,11 @@ syncDocumentTitle = () => {
 ## Common Issue - [ANE-138518](https://jirafnd.dev.activenetwork.com/browse/ANE-138518) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
-> Throughout the application, multiple expandable regions are given aria-labels that are too verbose and obscure the description of the actual control with information that is not needed (e.g., “Section Activity selection collapse detail clickable arrow”)
+> Throughout the application, multiple expandable regions are given aria-labels that are too verbose and obscure the description of the actual control with information that is not needed (e.g., `“Section Activity selection collapse detail clickable arrow”`)
 
 - Recommendation
 
-> Change the aria-label wordings to be more precise about the controls they represent and leave out information that is not required to understand the control (e.g., “Activity selection”). Additional attributes already provide many of the queues required for assistive technologies to understand the control such as aria-expanded indicating expanded or collapsed.
+> Change the aria-label wordings to be more precise about the controls they represent and leave out information that is not required to understand the control (e.g., `“Activity selection”`). Additional attributes already provide many of the queues required for assistive technologies to understand the control such as `aria-expanded` indicating expanded or collapsed.
 
 
 :::: {.columns}
@@ -107,7 +124,7 @@ syncDocumentTitle = () => {
 ::: {.column width="50%"}
 ### Solution
 - Remove unnecessary words from aria-label.
-- Use aria-expanded + aria-own/aria-controls to describe the expand/collapse state and related origin.
+- Use `aria-expanded + aria-own/aria-controls` to describe the expand/collapse state and related origin.
 - More details please confirm with UX about the special cases.
 :::
 ::::
@@ -150,7 +167,7 @@ Refer to:
 
 
 
-## Common Issue - [ANE-137830](https://jirafnd.dev.activenetwork.com/browse/ANE-137830) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+## Common Issue - [ANE-137830](https://jirafnd.dev.activenetwork.com/browse/ANE-137830) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > Functional accessibility issue: Many SVG graphics contain a `role="presentation"` or `role="none"` attribute. Because these icons are not focusable, they present no real impact on assistive technologies but the implemented role values may flag as invalid in automated testing tools.
@@ -166,8 +183,8 @@ Refer to:
 <Icon
   symbolPrefix="an-icon"
   name="location"
+  aria-hidden // default is true
   focusable={false}
-  aria-hidden={false}
   className="calendar-view__select-icon"
 />
 ```
@@ -175,7 +192,7 @@ Refer to:
 ::: {.column width="50%"}
 ```{.js code-line-numbers="2,4"}
 <svg
-  aria-hidden={false}
+  aria-hidden={true}
   className="icon-svg icon-svg-ic-problem icon-svg-size-md icon-svg-type-normal"
   focusable={false}
 >
@@ -183,6 +200,13 @@ Refer to:
 :::
 ::::
 
+Note: <span style="color: red">Warning: Do not use aria-hidden="true" on focusable elements.</span>
+
+Refer to:
+
+- <https://html-validate.org/rules/svg-focusable.html>
+- <https://a11y-guidelines.orange.com/en/articles/accessible-svg/>
+- <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden>
 
 
 ## Common Issue - [ANE-137668](https://jirafnd.dev.activenetwork.com/browse/ANE-137668) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
@@ -269,7 +293,7 @@ Refer to:
 ::::
 
 
-## Common Issue - [ANE-138596](https://jirafnd.dev.activenetwork.com/browse/ANE-138596) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+## Common Issue - [ANE-138596](https://jirafnd.dev.activenetwork.com/browse/ANE-138596) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > [WCAG 2.1] Many `input` fields lack proper `input identification` (as defined in WCAG 2.1 Success Criterion 1.3.5 Identify Input Purpose).
@@ -305,4 +329,212 @@ Refer to:
 
 Refer to:
 
+- <https://www.w3schools.com/accessibility/accessibility_autocomplete.php>
 - <https://html.spec.whatwg.org/multipage/forms.html#attr-form-autocomplete>
+
+
+## Common Issue - [ANE-137858](https://jirafnd.dev.activenetwork.com/browse/ANE-137858) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> Column headers that are not coded as headers `(<th>)` but instead as standard table data cells `(<td>)`.
+
+- Recommendation
+
+> Change the column headers to table headers `(<th>)` elements.
+
+### Solution
+:::: {.columns}
+::: {.column width=50%"}
+#### Before:
+```{.js code-line-numbers="3,5,6,8,9,11,12,14,15,17"}
+<thead role="rowgroup">
+  <tr role="row">
+    <td className="col-1" role="columnheader">
+      <FormattedMessage {...selfMessages.originalBalanceSubTotalOfSummary} />
+    </td>
+    <td className="col-2" role="columnheader">
+      <FormattedMessage {...selfMessages.currentBalanceSubTotalOfSummary} />
+    </td>
+    <td className="col-3" role="columnheader">
+      <FormattedMessage {...selfMessages.amountDueNowSubTotalOfSummary} />
+    </td>
+    <td className="col-4" role="columnheader">
+      <FormattedMessage {...selfMessages.subTotalOfSummary} />
+    </td>
+    <td className="col-5" role="columnheader">
+      <FormattedMessage {...selfMessages.remainingOfSummary} />
+    </td>
+  </tr>
+</thead>
+```
+:::
+::: {.column width="50%"}
+#### After:
+```{.js code-line-numbers="3,5,6,8,9,11,12,14,15,17"}
+<thead role="rowgroup">
+  <tr role="row">
+    <th className="col-1" role="columnheader">
+      <FormattedMessage {...selfMessages.originalBalanceSubTotalOfSummary} />
+    </th>
+    <th className="col-2" role="columnheader">
+      <FormattedMessage {...selfMessages.currentBalanceSubTotalOfSummary} />
+    </th>
+    <th className="col-3" role="columnheader">
+      <FormattedMessage {...selfMessages.amountDueNowSubTotalOfSummary} />
+    </th>
+    <th className="col-4" role="columnheader">
+      <FormattedMessage {...selfMessages.subTotalOfSummary} />
+    </th>
+    <th className="col-5" role="columnheader">
+      <FormattedMessage {...selfMessages.remainingOfSummary} />
+    </th>
+  </tr>
+</thead>
+
+```
+:::
+::::
+
+## Common Issue - [ANE-135010](https://jirafnd.dev.activenetwork.com/browse/ANE-135010) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> [WCAG 2.1] Changing the active main contact presents a status notification that is `not made aware to screen reader users`.
+
+- Recommendation
+
+> Ensure to announce status messages automatically to screen reader users. You can use a `role="alert"` or WAI-ARIA to accomplish this task.
+
+
+### Solution
+:::: {.columns}
+::: {.column width=50%"}
+![](images/ANE-135010.png){height="50px"}
+```{.js code-line-numbers="3"}
+// Toast.jsx
+<div
+  role="status"
+  className={toastClassName}
+  style={style}
+  {...mouseEventProps}
+>
+```
+<br>
+
+#### Status role
+> A type of `live region` whose content is advisory information for the user but is not important enough to justify an alert, often but not necessarily presented as a status bar.
+
+:::
+::: {.column width="50%"}
+#### Live Region Roles
+
+> Live regions are perceivable regions of a web page that are typically updated as a result of an external event when user focus may be elsewhere. These regions are not always updated as a result of a user interaction.
+
+The following roles are live regions and may be modified by live region attributes.
+
+- [alert](https://w3c.github.io/aria/#dfn-live-region)
+- [log](https://w3c.github.io/aria/#log)
+- [marquee](https://w3c.github.io/aria/#marquee)
+- [status](https://w3c.github.io/aria/#status)
+- [timer](https://w3c.github.io/aria/#timer)
+:::
+::::
+
+## Common Issue - [ANE-138534](https://jirafnd.dev.activenetwork.com/browse/ANE-138534) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> The page contains `multiple headings` that `are not programmatically implemented as headings` but should be (e.g., Payment and Order Management, Other services, etc).
+
+- Recommendation
+
+> Add section `headings` to the pages heading order.
+
+
+### Solution
+
+:::: {.columns}
+::: {.column width=50%"}
+#### Before:
+```{.js code-line-numbers="1,6,7,9"}
+<div className="account-options__balance-header">
+  <FormattedDyncMessage
+    value={headerLabel}
+    className="account-options__balance-title"
+  />
+</div>
+<span className="family-name">
+  <FormattedMessage {...selfMessages.familyName} values={{ familyName }} />
+</span>
+```
+:::
+::: {.column width="50%"}
+#### After:
+```{.js code-line-numbers="1,6,7,9"}
+<h2 className="account-options__balance-header">
+  <FormattedDyncMessage
+    value={headerLabel}
+    className="account-options__balance-title"
+  />
+</h2>
+<h3 className="family-name">
+  <FormattedMessage {...selfMessages.familyName} values={{ familyName }} />
+</h3>
+```
+:::
+::::
+
+## Common Issue - [ANE-137861](https://jirafnd.dev.activenetwork.com/browse/ANE-137861) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> `Issue42`: The `“View more”` control presents additional location options but `moves the user’s focus past all the newly injected options`. <br> `Issue45`: Functional accessibility issue: Multiple groups of input fields exist without the use of `<fieldset>` elements. Each group of inputs with a common topic would benefit from the use of `<fieldset>` elements.
+
+- Recommendation
+
+> `Issue42`: When presenting the new options, `move the user’s focus to the start of the new options` instead of after the options. <br> `Issue45`: Add `<fieldset>` and `<legend>` elements to each group of inputs.
+
+### Solution
+
+#### Issue42
+```{.js code-line-numbers="7,8,9,10,11"}
+onExpandChange = (expanded) => {
+  const {
+    expandable,
+    isForwardFocusWhenExpand,
+    maxDisplayCount
+  } = this.props;
+  if (
+    expandable && isForwardFocusWhenExpand && this.containerNode && expanded && maxDisplayCount
+  ) {
+    const ariaInputs = this.containerNode.querySelectorAll('input');
+    ariaInputs[maxDisplayCount + 1].focus();
+  }
+};
+```
+#### Issue45
+:::: {.columns}
+::: {.column width=50%"}
+#### Before:
+```{.js}
+<div className="filter-sections">
+  <Heading className="filter-sections__title" level={4}>
+    <FormattedMessage {...selfMessages.titleDateRangeOfWhenFilter} />
+  </Heading>
+  <DateRangePicker
+    size="lg"
+  />
+</div>
+```
+:::
+::: {.column width="50%"}
+#### After:
+```{.js code-line-numbers="2,3,7"}
+<div className="filter-sections">
+  <fieldset className="activity-search-filters__fieldset">
+    <legend className="filter-sections__title u-text-left">{messages[selfMessages.titleDateRangeOfWhenFilter.id]}</legend>
+    <DateRangePicker
+      size="lg"
+    />
+  </fieldset>
+</div>
+```
+:::
+::::
