@@ -36,7 +36,7 @@ filters:
 
 : {tbl-colwidths="[20, 30, 23, 24]"}
 
-## Page Issue - [ANE-137859](https://jirafnd.dev.activenetwork.com/browse/ANE-137859) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+## Common Issue - [ANE-137859](https://jirafnd.dev.activenetwork.com/browse/ANE-137859) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
 
 > The saved credit card has a `“Remove” action` that fails to identify what card will be removed. If multiple cards existed on the account, no differentiation would exist between remove actions.
@@ -46,12 +46,24 @@ filters:
 >  Include the type of card or another unique identifier of the card being removed as part of the label for the remove action.
 
 ### Solution
+:::: {.columns}
+::: {.column width="50%"}
+![](images/ANE-137859.png){height="100px"}
 ```{.js code-line-numbers="2,4"}
 // Before
 "app.modules.myAccount.SavedCards.remove": "Remove",
 // After
 "app.modules.myAccount.SavedCards.removeAriaLabel": "Remove {cardType} with last 4 digits {lastFourDigits}",
 ```
+:::
+::: {.column width="50%"}
+#### Note:
+The same kind of issues:
+
+- Transaction list (remove, edit)
+- The Date section of the reservation process (remove)
+:::
+::::
 
 ## Common Issue - [ANE-137868](https://jirafnd.dev.activenetwork.com/browse/ANE-137868) {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 - Issue
@@ -453,6 +465,9 @@ The following roles are live regions and may be modified by live region attribut
 
 :::: {.columns}
 ::: {.column width=50%"}
+![](images/ANE-138534.png){height="250pt"}
+:::
+::: {.column width="50%"}
 #### Before:
 ```{.js code-line-numbers="1,6,7,9"}
 <div className="account-options__balance-header">
@@ -465,8 +480,6 @@ The following roles are live regions and may be modified by live region attribut
   <FormattedMessage {...selfMessages.familyName} values={{ familyName }} />
 </span>
 ```
-:::
-::: {.column width="50%"}
 #### After:
 ```{.js code-line-numbers="1,6,7,9"}
 <h2 className="account-options__balance-header">
@@ -494,6 +507,11 @@ The following roles are live regions and may be modified by live region attribut
 ### Solution
 
 #### Issue42
+:::: {.columns}
+::: {.column width=50%"}
+![](images/ANE-137861.png){height="80px"}
+:::
+::: {.column width="50%"}
 ```{.js code-line-numbers="7,8,9,10,11"}
 onExpandChange = (expanded) => {
   const {
@@ -509,6 +527,8 @@ onExpandChange = (expanded) => {
   }
 };
 ```
+:::
+::::
 #### Issue45
 :::: {.columns}
 ::: {.column width=50%"}
@@ -535,6 +555,55 @@ onExpandChange = (expanded) => {
     />
   </fieldset>
 </div>
+```
+:::
+::::
+
+
+## Common Issue - [ANE-137863](https://jirafnd.dev.activenetwork.com/browse/ANE-137863) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+>  `A list` of reservation rules exists that `is not implemented as a list but visually implies a list`.
+
+- Recommendation
+
+>  Change the structure of this list to use an ordered list `(<ol>) and list items (<li>)`.
+
+
+### Solution
+
+:::: {.columns}
+::: {.column width=50%"}
+![](images/ANE-137863.png){height="100pt"}
+:::
+::: {.column width="50%"}
+#### Before:
+```{.js code-line-numbers="3,4,8,10"}
+const renderRule = rules =>
+  rules.map((rule, index) => (
+    <div className="rules-item" key={`rule_${index}`}>
+    </div>
+  ));
+
+const ReservationRules = (isLg, rules) => (
+  <div className="rules__content">
+    { renderRule(rules) }
+  </div>
+);
+```
+#### After:
+```{.js code-line-numbers="3,4,8,10"}
+const renderRule = rules =>
+  rules.map((rule, index) => (
+    <li className="rules-item" key={`rule_${index}`}>
+    </li>
+  ));
+
+const ReservationRules = (isLg, rules) => (
+  <ol className="rules__content">
+    { renderRule(rules) }
+  </ol>
+);
 ```
 :::
 ::::

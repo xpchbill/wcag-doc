@@ -436,8 +436,8 @@
 </tbody>
 </table>
 </section>
-<section id="page-issue---ane-137859" class="slide level2" data-background-color="black" data-background-image="/images/Picture1.png" data-background-opacity="0.3">
-<h2>Page Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-137859">ANE-137859</a></h2>
+<section id="common-issue---ane-137859" class="slide level2" data-background-color="black" data-background-image="/images/Picture1.png" data-background-opacity="0.3">
+<h2>Common Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-137859">ANE-137859</a></h2>
 <ul>
 <li>Issue</li>
 </ul>
@@ -451,10 +451,22 @@
 <p>Include the type of card or another unique identifier of the card being removed as part of the label for the remove action.</p>
 </blockquote>
 <h3 id="solution">Solution</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/ANE-137859.png" height="100"></p>
 <div class="sourceCode" id="cb1" data-code-line-numbers="2,4"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// Before</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="st">"app.modules.myAccount.SavedCards.remove"</span><span class="op">:</span> <span class="st">"Remove"</span><span class="op">,</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co">// After</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="st">"app.modules.myAccount.SavedCards.removeAriaLabel"</span><span class="op">:</span> <span class="st">"Remove {cardType} with last 4 digits {lastFourDigits}"</span><span class="op">,</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<h4 id="note">Note:</h4>
+<p>The same kind of issues:</p>
+<ul>
+<li>Transaction list (remove, edit)</li>
+<li>The Date section of the reservation process (remove)</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="common-issue---ane-137868" class="slide level2" data-background-color="black" data-background-image="/images/Picture1.png" data-background-opacity="0.3">
 <h2>Common Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-137868">ANE-137868</a></h2>
@@ -877,6 +889,8 @@
 <h3 id="solution-12">Solution</h3>
 <div class="columns">
 <div class="column" style="width:50%&quot;;">
+<p><img data-src="images/ANE-138534.png" style="height:3.47222in"></p>
+</div><div class="column" style="width:50%;">
 <h4 id="before-1">Before:</h4>
 <div class="sourceCode" id="cb9" data-code-line-numbers="1,6,7,9"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1"></a><span class="op">&lt;</span>div className<span class="op">=</span><span class="st">"account-options__balance-header"</span><span class="op">&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="op">&lt;</span>FormattedDyncMessage</span>
@@ -887,7 +901,6 @@
 <span id="cb9-7"><a href="#cb9-7"></a><span class="op">&lt;</span>span className<span class="op">=</span><span class="st">"family-name"</span><span class="op">&gt;</span></span>
 <span id="cb9-8"><a href="#cb9-8"></a>  <span class="op">&lt;</span>FormattedMessage {<span class="op">...</span>selfMessages<span class="op">.</span><span class="at">familyName</span>} values<span class="op">=</span>{{ familyName }} <span class="op">/&gt;</span></span>
 <span id="cb9-9"><a href="#cb9-9"></a><span class="op">&lt;/</span>span<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:50%;">
 <h4 id="after-1">After:</h4>
 <div class="sourceCode" id="cb10" data-code-line-numbers="1,6,7,9"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1"></a><span class="op">&lt;</span>h2 className<span class="op">=</span><span class="st">"account-options__balance-header"</span><span class="op">&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="op">&lt;</span>FormattedDyncMessage</span>
@@ -917,6 +930,10 @@
 </blockquote>
 <h3 id="solution-13">Solution</h3>
 <h4 id="issue42">Issue42</h4>
+<div class="columns">
+<div class="column" style="width:50%&quot;;">
+<p><img data-src="images/ANE-137861.png" height="80"></p>
+</div><div class="column" style="width:50%;">
 <div class="sourceCode" id="cb11" data-code-line-numbers="7,8,9,10,11"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1"></a>onExpandChange <span class="op">=</span> (expanded) <span class="kw">=&gt;</span> {</span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="kw">const</span> {</span>
 <span id="cb11-3"><a href="#cb11-3"></a>    expandable<span class="op">,</span></span>
@@ -930,6 +947,8 @@
 <span id="cb11-11"><a href="#cb11-11"></a>    ariaInputs[maxDisplayCount <span class="op">+</span> <span class="dv">1</span>]<span class="op">.</span><span class="fu">focus</span>()<span class="op">;</span></span>
 <span id="cb11-12"><a href="#cb11-12"></a>  }</span>
 <span id="cb11-13"><a href="#cb11-13"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 <h4 id="issue45">Issue45</h4>
 <div class="columns">
 <div class="column" style="width:50%&quot;;">
@@ -952,6 +971,52 @@
 <span id="cb13-6"><a href="#cb13-6"></a>    <span class="op">/&gt;</span></span>
 <span id="cb13-7"><a href="#cb13-7"></a>  <span class="op">&lt;/</span>fieldset<span class="op">&gt;</span></span>
 <span id="cb13-8"><a href="#cb13-8"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="common-issue---ane-137863" class="slide level2 smaller" data-background-color="black" data-background-image="/images/Picture1.png" data-background-opacity="0.3">
+<h2>Common Issue - <a href="https://jirafnd.dev.activenetwork.com/browse/ANE-137863">ANE-137863</a></h2>
+<ul>
+<li>Issue</li>
+</ul>
+<blockquote>
+<p><code>A list</code> of reservation rules exists that <code>is not implemented as a list but visually implies a list</code>.</p>
+</blockquote>
+<ul>
+<li>Recommendation</li>
+</ul>
+<blockquote>
+<p>Change the structure of this list to use an ordered list <code>(&lt;ol&gt;) and list items (&lt;li&gt;)</code>.</p>
+</blockquote>
+<h3 id="solution-14">Solution</h3>
+<div class="columns">
+<div class="column" style="width:50%&quot;;">
+<p><img data-src="images/ANE-137863.png" style="height:1.38889in"></p>
+</div><div class="column" style="width:50%;">
+<h4 id="before-3">Before:</h4>
+<div class="sourceCode" id="cb14" data-code-line-numbers="3,4,8,10"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">const</span> renderRule <span class="op">=</span> rules <span class="kw">=&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  rules<span class="op">.</span><span class="fu">map</span>((rule<span class="op">,</span> index) <span class="kw">=&gt;</span> (</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">"rules-item"</span> key<span class="op">=</span>{<span class="vs">`rule_</span><span class="sc">${</span>index<span class="sc">}</span><span class="vs">`</span>}<span class="op">&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  ))<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="kw">const</span> ReservationRules <span class="op">=</span> (isLg<span class="op">,</span> rules) <span class="kw">=&gt;</span> (</span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">"rules__content"</span><span class="op">&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>    { <span class="fu">renderRule</span>(rules) }</span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="after-3">After:</h4>
+<div class="sourceCode" id="cb15" data-code-line-numbers="3,4,8,10"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">const</span> renderRule <span class="op">=</span> rules <span class="kw">=&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  rules<span class="op">.</span><span class="fu">map</span>((rule<span class="op">,</span> index) <span class="kw">=&gt;</span> (</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="op">&lt;</span>li className<span class="op">=</span><span class="st">"rules-item"</span> key<span class="op">=</span>{<span class="vs">`rule_</span><span class="sc">${</span>index<span class="sc">}</span><span class="vs">`</span>}<span class="op">&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="op">&lt;/</span>li<span class="op">&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  ))<span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="kw">const</span> ReservationRules <span class="op">=</span> (isLg<span class="op">,</span> rules) <span class="kw">=&gt;</span> (</span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="op">&lt;</span>ol className<span class="op">=</span><span class="st">"rules__content"</span><span class="op">&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>    { <span class="fu">renderRule</span>(rules) }</span>
+<span id="cb15-10"><a href="#cb15-10"></a>  <span class="op">&lt;/</span>ol<span class="op">&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="footer footer-default">
