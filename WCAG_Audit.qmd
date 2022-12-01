@@ -6,6 +6,7 @@ format:
   revealjs:
     # logo: /images/logo.png
     # theme: night, sky
+    css: style.css
     theme: night
     transition: slide
     # smaller: true
@@ -17,7 +18,7 @@ format:
       data-background-image: /images/Picture1.png
       # data-background-size: contain
       data-background-opacity: "0.6"
-    # author: "Bill Xiong"
+    author: "Bill Xiong"
     # background-transition: fade
 # fig-cap-location: margin
 fontsize: 15pt
@@ -25,6 +26,58 @@ linestretch: 1.3
 filters:
   - roughnotation
 ---
+
+## Scope of the tested product {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+
+> The mandate of this audit covers the `native desktop browser` experience limited to audience view `(including responsive)`, of the test pages identified within the Tested Product section below, `exclusive of PDF file content`, as observed in May/June 2022.
+
+<br>
+
+#### Natural languages in scope:
+
+- `English`
+- `French` (unless otherwise stated in the specific issue, every issue applies to both the English and each corresponding French page)
+
+## Conformance target {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+
+> `standards/legislation to meet or exceed, and at what level.`
+
+<br>
+
+#### `Minimum` standard (and level) targeted by this audit: `W3C WCAG 2.1 Level AA`, thus meeting or exceeding the WCAG technical standards designated by:
+
+- both W3C `WCAG 2.0 AA` and `W3C WCAG 2.1 AA`
+- U.S. Revised `Section 508`, and thus, by precedent, complies with known legal interpretations of the Americans With Disabilities Act (ADA) as it applies to online products
+- EN `301 549` (2018) and (2019)
+- Treasury Board of Canada’s Guideline on Making Information Technology Useable by All
+- UK’s Public Sector Bodies (Websites and Mobile Applications) Accessibility Regulations 2018 (PSBAR), and possible post-Brexit engagement with aspects of the European Accessibility Act
+- Australia’s DDA (Disability Discrimination Act, 1992)
+- consideration of anticipated regulations related to Government of Canada’s Accessible Canada Act
+- Ontario’s AODA
+- Existing and anticipated regulations in other Canadian provinces, such as the Accessibility for Manitobans Act (AMA), Nova Scotia Accessibility Act (2017), British Columbia Accessibility Act (Bill M 219, 2018)
+- Israel’s Equal Rights for Persons with Disabilities law / Standard 5568
+- Korea’s KWCAG (all versions)
+- Norway’s UU Section 14
+- Japan’s JIS X 8341-3, JIS X 3241-3
+- New Zealand’s NZG WS 2.0
+
+
+## Accessibility support baseline {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+
+<br>
+<br>
+
+#### ACTIVE Network has `declared support` for only `these browser/platform` combinations:
+
+- Apple `Safari` (current version) on `macOS`, with and `without VoiceOver`
+- Google `Chrome` (current version) on `Windows` and `macOS`
+- Microsoft `Edge` on `Windows 10` (latest release)
+- Mozilla `Firefox` (current version) on `Windows`
+
+
+## Issue status legend {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+
+Development team: As you resolve each issue, please type a status code immediately before the word “Recommendation” within this very Google Doc (if you don’t have full editing rights, please notify us so we can arrange that for you). Then, if you desire a re-audit (and thus potential certification), notify berman@davidberman.com once you’ve done all you are going to do, and it has been deployed to where we can see it (including the URL of where the new product to test is located). When there is nothing but questions, we can move forward with any next steps (whether it be further coaching, clarification, or re-audit).
 
 ## Summary {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 
@@ -607,3 +660,125 @@ const ReservationRules = (isLg, rules) => (
 ```
 :::
 ::::
+
+
+## Common Issue - [ANE-142791](https://jirafnd.dev.activenetwork.com/browse/ANE-142791) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> [WCAG 2.1] The `visible focus indicator` on some controls `lacks sufficient contrast` falling short of the `3:1` ratio required for non-text contrast (ratio `1.5:1`).
+
+- Recommendation
+
+> Change all problematic foreground/background pairings to `higher contrast ratios that meet or exceed the required minimum`.
+
+
+### Solution
+![](images/ANE-142791_01.png){height="28pt"}
+<br>
+![](images/ANE-142791_02.png){height="50pt"}
+
+
+## Common Issue - [ANE-138958](https://jirafnd.dev.activenetwork.com/browse/ANE-138958) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> Modifying a reservation leads to a page with a primary heading `<h1> that contains actionable button controls`.
+
+- Recommendation
+
+> Reposition `the controls` so they are `no longer within the h1 element`.
+
+![](images/ANE-138958_03.png)
+<br>
+![](images/ANE-138958_01.png)
+<br>
+![](images/ANE-138958_02.png)
+
+
+## Common Issue - [ANE-142788](https://jirafnd.dev.activenetwork.com/browse/ANE-142788) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> Table column headers throughout the Permit page contain `sort icons that announce to screen reader users as only “graphic”` due to empty aria-labels on the `<i role=”img”>` elements.
+
+- Recommendation
+
+> Either `provide a label for all states of the graphic`, or `use aria-hidden to hide the graphic from screen reader users`. Note: the aria-sort attribute located on the `<th>` already indicates the current sort value of the column.
+
+![](images/ANE-142788.png){height="80px"}
+
+### Solution
+
+Added the `'aria-hidden'` attributes
+
+```{.js code-line-numbers="4"}
+<i
+  key={index}
+  className={classNames('icon', sortOrderIcon)}
+  aria-hidden
+/>
+```
+
+
+## Common Issue - [ANE-126474](https://jirafnd.dev.activenetwork.com/browse/ANE-126474) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> The `tab controls that resize the column widths within the data tables` are confusing to a non-sighted user, due to the tabs gaining focus prior to the table markup being announced. The user is given the ability to affect the width of a table column they have not yet encountered.
+
+- Recommendation
+
+> Provide the `tabs` in the correct `focus order` where a user `can modify the width of the column` after having interacted with the table, and, ideally, also provide a specific trigger (e.g., a button that enters the “column width adjustment” mode) for the user to `modify the column widths using the keyboard` (otherwise the column width controls are skipped in the tabbing order).
+
+
+![](images/ANE-126474.png){height="80px"}
+
+### Solution
+
+:::: {.columns}
+::: {.column width=50%"}
+```{.js code-line-numbers="1,4,6,8,10,13,18"}
+  onKeydown(e) {
+    // ...
+    // Left Arrow
+    if (keyCode === 37) {
+      x -= 1;
+    }
+    // Right Arrow
+    if (keyCode === 39) {
+      x += 1;
+    }
+    // ...
+  }
+  onMouseMove(e) {
+    // ...
+    const x = (pageLeftX - this.drag.initPageLeftX) + this.drag.initLeft;
+    this.calculatePosition(index, x, e);
+    // ...
+  }
+```
+:::
+::: {.column width="50%"}
+```{.js code-line-numbers="4,6"}
+  render () {
+    return (
+      //...
+      <span class="drag-handle" tabIndex="0" role="button" aria-grabbed="false" aria-live="polite">
+        //...
+      </span>
+      //...
+    )
+  }
+```
+:::
+::::
+
+
+## Common Issue - [ANE-142808](https://jirafnd.dev.activenetwork.com/browse/ANE-142808) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+- Issue
+
+> `Column 1 of the table` containing the searched date results `lacks any header information`.
+
+- Recommendation
+
+> `Identify the column header’s purpose`.
+
+### Solution
+![](images/ANE-142808.png){height="240pt"}

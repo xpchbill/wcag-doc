@@ -1,0 +1,17 @@
+
+.reveal blockquote {
+    font-size: 12pt;
+}
+.reveal blockquote p {
+    margin: 0;
+}
+
+.reveal ul li {
+    font-size: 12pt;
+}
+/* .reveal #title-slide, .reveal #title-slide h1 {
+    color: #ffbfa6;
+} */
+/* .reveal section.has-dark-background h2 {
+    color: #ffa07a;
+} */
