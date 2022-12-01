@@ -1,13 +1,26 @@
 
-.reveal blockquote {
+/* .reveal blockquote {
     font-size: 12pt;
+} */
+
+.reveal ul li blockquote {
+    color: #bbb;
+    margin-left: 24pt;
+    border-left-width: 0.15rem;
+    border-left-color: #bbb;
 }
+
 .reveal blockquote p {
     margin: 0;
 }
 
-.reveal ul li {
+/* .reveal ul li {
     font-size: 12pt;
+} */
+
+p.p--small-size {
+    font-size: 12pt;
+    line-height: 1.7rem;
 }
 /* .reveal #title-slide, .reveal #title-slide h1 {
     color: #ffbfa6;

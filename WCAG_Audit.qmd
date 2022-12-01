@@ -48,7 +48,7 @@ filters:
 
 - both W3C `WCAG 2.0 AA` and `W3C WCAG 2.1 AA`
 - U.S. Revised `Section 508`, and thus, by precedent, complies with known legal interpretations of the Americans With Disabilities Act (ADA) as it applies to online products
-- EN `301 549` (2018) and (2019)
+- EN 301 549 (2018) and (2019)
 - Treasury Board of Canada’s Guideline on Making Information Technology Useable by All
 - UK’s Public Sector Bodies (Websites and Mobile Applications) Accessibility Regulations 2018 (PSBAR), and possible post-Brexit engagement with aspects of the European Accessibility Act
 - Australia’s DDA (Disability Discrimination Act, 1992)
@@ -75,9 +75,31 @@ filters:
 - Mozilla `Firefox` (current version) on `Windows`
 
 
-## Issue status legend {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+## Issue status legend {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 
-Development team: As you resolve each issue, please type a status code immediately before the word “Recommendation” within this very Google Doc (if you don’t have full editing rights, please notify us so we can arrange that for you). Then, if you desire a re-audit (and thus potential certification), notify berman@davidberman.com once you’ve done all you are going to do, and it has been deployed to where we can see it (including the URL of where the new product to test is located). When there is nothing but questions, we can move forward with any next steps (whether it be further coaching, clarification, or re-audit).
+<br>
+
+<p class="p--small-size">Development team: As you `resolve each issue`, please `type a status code` immediately before the word “Recommendation” within this very `Google Doc` (if you don’t have full editing rights, please notify us so we can arrange that for you). Then, if you `desire a re-audit` (and thus potential certification), `notify berman@davidberman.com` once you’ve `done all you are going to do`, and it has been `deployed to where we can see it` (including the URL of where the new product to test is located). When there is nothing but questions, we can move forward with any `next steps` (`whether it be further coaching, clarification, or re-audit`).
+</p>
+
+<br>
+
+- `[F?]` dev team not finished fixing ... dev team wants `further guidance from Team Berman` and has indicated what part of the recommendation they find unactionable or unclear.
+- `[F0]` dev team has `decided never to fix` this (or to have Team Berman no longer audit it within this engagement).
+- `[F1]` dev team thinks they have `fixed`, using a technique recommended by Team Berman.
+- `[F2][how fixed]` dev team `thinks` they have `fixed`, using a different technique and that technique is [___________].
+
+  > (e.g., “[F2] We used an aria-describedby attribute instead of aria-label because it worked better for bilingual rollout”) 
+- `[F3][how fixed]` dev team `not sure` if they have `fixed` or not, and so needs Team Berman to make a determination.
+
+  > (e.g., “[F3] We tried doing what you said, but we weren’t certain what a flaboda is, and we didn’t have on iOS running Chrome to test on”)
+
+- ~~`Strikethrough through the entire issue (by Team Berman only)`~~: indicates that `Team Berman agrees` the issue has been `resolved`.
+
+- `Google Doc Comment thread`: started by Team Berman, if the issue is `still an issue`.
+
+- <span style="background:green;font-weight:bold;">[NEW]</span> (by Team Berman only, if new issue discovered during a re-audit, uses lettering to preserve previous audit numbering)
+
 
 ## Summary {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 
