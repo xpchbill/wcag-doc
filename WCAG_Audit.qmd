@@ -29,7 +29,7 @@ filters:
 
 ## Scope of the tested product {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 
-> The mandate of this audit covers the `native desktop browser` experience limited to audience view `(including responsive)`, of the test pages identified within the Tested Product section below, `exclusive of PDF file content`, as observed in May/June 2022.
+> The mandate of this audit covers the `native desktop browser` experience limited to audience view `(including responsive)`, of the test pages identified within the Tested Product section below.
 
 <br>
 
@@ -69,7 +69,7 @@ filters:
 
 #### ACTIVE Network has `declared support` for only `these browser/platform` combinations:
 
-- Apple `Safari` (current version) on `macOS`, with and `without VoiceOver`
+- Apple `Safari` (current version) on `macOS`, with and without VoiceOver
 - Google `Chrome` (current version) on `Windows` and `macOS`
 - Microsoft `Edge` on `Windows 10` (latest release)
 - Mozilla `Firefox` (current version) on `Windows`
