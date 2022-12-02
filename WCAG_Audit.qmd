@@ -101,13 +101,22 @@ filters:
 - <span style="background:green;font-weight:bold;">[NEW]</span> (by Team Berman only, if new issue discovered during a re-audit, uses lettering to preserve previous audit numbering)
 
 
-## Summary {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
+## Summary for phase 1 ~ 3 {background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
 
-| Steps | Common Issues | Page issues | Total issues |
+
+<br>
+Total issues: `125`
+
+> Front end issues: `118`<br>Back end issues: `7`
+
+<br>
+
+| Steps | [F0] Never to fix | Total number | Completed state  |
 |--------|--------|--------|--------|
-| Phase 1  | 8 | 53 | 61 |
-| Phase 2  | 2 | 27 | 29 |
-| Phase 3  |      | | |
+| Phase 1  | 3 | 31 | ✅ All fixed |
+| Phase 2  | 1 | 34 | ✅ All fixed |
+| Phase 3  | 1 | 56 | ✅ All fixed |
+| PDF      | | 4 | ✅ All fixed |
 
 : {tbl-colwidths="[20, 30, 23, 24]"}
 
@@ -698,6 +707,12 @@ const ReservationRules = (isLg, rules) => (
 ![](images/ANE-142791_01.png){height="28pt"}
 <br>
 ![](images/ANE-142791_02.png){height="50pt"}
+<br>
+![](images/ANE-142791_03.png){height="30pt"}
+<br>
+![](images/ANE-142791_04.png){height="30pt"}
+<br>
+![](images/ANE-142791_05.png){height="30pt"}
 
 
 ## Common Issue - [ANE-138958](https://jirafnd.dev.activenetwork.com/browse/ANE-138958) {.smaller background-color="black" background-image="/images/Picture1.png" background-opacity="0.3"}
@@ -804,3 +819,7 @@ Added the `'aria-hidden'` attributes
 
 ### Solution
 ![](images/ANE-142808.png){height="240pt"}
+
+## {.center background-color="black" background-image="/images/Picture1.png" background-opacity="0.6"}
+
+<h1 style="text-align:center;">Thanks!</h1>
